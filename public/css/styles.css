@@ -29,7 +29,7 @@ h2 {
 }
 
 #hero img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
 }
 
@@ -61,7 +61,7 @@ h2 {
 
 nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: var(--main-color);
 }
 
@@ -168,9 +168,5 @@ nav a:active {
 
   #reviews {
     grid-column: 2/3;
-  }
-
-  nav {
-    justify-content: space-around;
   }
 }
