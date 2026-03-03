@@ -1,6 +1,176 @@
+:root {
+  --text-color: #333;
+  --main-color: #003050;
+  --white-color: #fff;
+  --white-color-faded: rgb(255, 255, 255, 0.9);
+  --main-color-faded: rgb(220, 241, 255);
+}
+
 /******* Change Box Model ***************/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: arial;
+}
+
+h1, h2 {
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+}
+
+#hero img {
+  width: 100%;
+  height: auto;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.siteName a,
+#tools a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.siteName {
+    font-size: 2rem;
+}
+
+#tools a {
+  text-transform: uppercase;
+}
+
+#top-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--main-color);
+}
+
+nav a {
+  color: var(--white-color);
+  text-decoration: none;
+  background-color: var(--main-color);
+  padding: 10px;
+}
+
+nav a:hover {
+  background-color: var(--main-color-faded);
+  color: var(--text-color);
+  text-decoration: underline;
+}
+
+nav a:active {
+  background-color: var(--text-color);
+  color: var(--white-color);
+}
+
+#hero, #reviews, #upgrade-section {
+  margin-bottom: 20px;
+}
+
+#hero {
+  position: relative;
+  width: 100%;
+}
+
+#hero-overlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: var(--white-color-faded);
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#hero-overlay p,
+#hero-overlay h2 {
+  color: var(--main-color);
+}
+
+.button {
+  background-color: var(--main-color);
+  padding: 10px;
+  text-align: center;
+  color: var(--white-color);
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background-color: var(--main-color-faded);
+  color: var(--text-color);
+}
+
+#reviews li {
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+#upgrades {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.upgrade {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+}
+
+.upgrade picture {
+  display: flex;
+  background-color: var(--main-color);
+  width: 140px;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+}
+
+.upgrade img {
+  background-color: var(--main-color);
+}
+
+@media screen and (min-width: 500px) {
+  .content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  #upgrade-section {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  #reviews {
+    grid-column: 2/3;
+  }
+
+  nav {
+    justify-content: space-around;
+  }
 }
