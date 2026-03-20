@@ -23,18 +23,29 @@ invCont.buildByClassificationId = async function (req, res, next) {
  *  Build inventory by details view
  * ************************** */
 invCont.buildByInvId = async function (req, res, next) {
-  const inv_id = req.params.invId
-  const data = await invModel.getVehicleByInvId(inv_id)
-  const details = await utilities.buildVehicleDetails(data)
-  let nav = await utilities.getNav()
-  const detailModel = data[0].inv_model
-  const detailMake = data[0].inv_make
-  const detailYear = data[0].inv_year
-  res.render("./inventory/details", {
-    title: `${detailYear} ${detailMake} ${detailModel}`,
-    nav,
-    details,
-  })
+  try {
+    const inv_id = req.params.invId
+
+    if (inv_id === "500") {
+      const error = new Error("Sorry, the vehicle does not exist")
+      error.status = 500
+      throw error
+    }
+
+    const data = await invModel.getVehicleByInvId(inv_id)
+    const details = await utilities.buildVehicleDetails(data)
+    let nav = await utilities.getNav()
+    const detailModel = data[0].inv_model
+    const detailMake = data[0].inv_make
+    const detailYear = data[0].inv_year
+    res.render("./inventory/details", {
+      title: `${detailYear} ${detailMake} ${detailModel}`,
+      nav,
+      details,
+    })
+  } catch (error) {
+      next(error)
+  }
 }
 
 module.exports = invCont
