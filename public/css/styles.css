@@ -227,6 +227,49 @@ nav a:active {
   list-style-type: none;
 }
 
+.notice {
+  color: red;
+  padding: 0 0 20px 30px;
+}
+
+#login-form, #register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+}
+
+#login-form label, #register-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 10px;
+}
+
+#login-form input, #register-form input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+#login-form button, #register-form button {
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--main-color);
+  color: var(--white-color);
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+#login-form p {
+  align-self: center;
+}
+
+#password-req {
+  font-size: 0.8rem;
+}
+
 @media screen and (min-width: 501px) {
   .content-wrapper {
     display: grid;
