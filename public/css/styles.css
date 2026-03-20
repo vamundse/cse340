@@ -201,6 +201,32 @@ nav a:active {
   background-color: var(--main-color-faded);
 }
 
+#detail-display {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#detail-display img {
+  max-width: 500px;
+  height: auto;
+}
+
+#detail-price {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+#detail-display ul {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+#detail-display li {
+  list-style-type: none;
+}
+
 @media screen and (min-width: 501px) {
   .content-wrapper {
     display: grid;
@@ -219,5 +245,19 @@ nav a:active {
 
   #inv-display {
     flex-direction: row;
+  }
+
+  #detail-display {
+    display: grid;
+    grid-template-columns: 500px 1fr;
+    gap: 20px;
+  }
+
+  #detail-display img {
+    grid-row: 1/4;
+  }
+
+  #detail-display ul {
+    grid-column: 2/3;
   }
 }

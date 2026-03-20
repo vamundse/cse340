@@ -27,9 +27,9 @@ Util.getNav = async function (req, res, next) {
 /* **************************************
 * Build the classification view HTML
 * ************************************ */
-Util.buildClassificationGrid = async function(data){
+Util.buildClassificationGrid = async function(data) {
   let grid
-  if(data.length > 0){
+  if(data.length > 0) {
     grid = '<ul id="inv-display">'
     data.forEach(vehicle => { 
       grid += '<li>'
@@ -56,6 +56,30 @@ Util.buildClassificationGrid = async function(data){
   }
   return grid
 }
+
+/* **************************************
+* Build the details view HTML
+* ************************************ */
+Util.buildVehicleDetails = async function(data) {
+  let details
+  if(data.length > 0) {
+    details = `<div id="detail-display">`
+    data.forEach(vehicle => {
+      details += `<img src="${vehicle.inv_image}">`
+      details += `<p id="detail-price">Sales price: $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>`
+      details += `<ul id="details-list">`
+      details += `<li><b>Mileage:</b> ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)}</li>`
+      details += `<li><b>Color:</b> ${vehicle.inv_color}</li>`
+      details += `<li><b>Description:</b> ${vehicle.inv_description}</li>`
+      details += `</ul>`
+    })
+    details += `</div>`
+  } else {
+    details += '<p class="notice">Sorry, the vehicle could not be found.</p>'
+  }
+  return details
+}
+
 
 /* ****************************************
  * Middleware For Handling Errors
