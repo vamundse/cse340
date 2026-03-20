@@ -31,7 +31,7 @@ invCont.buildByInvId = async function (req, res, next) {
   const detailMake = data[0].inv_make
   const detailYear = data[0].inv_year
   res.render("./inventory/details", {
-    title: `${detailYear} ${detailModel} ${detailMake}`,
+    title: `${detailYear} ${detailMake} ${detailModel}`,
     nav,
     details,
   })

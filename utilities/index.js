@@ -65,7 +65,7 @@ Util.buildVehicleDetails = async function(data) {
   if(data.length > 0) {
     details = `<div id="detail-display">`
     data.forEach(vehicle => {
-      details += `<img src="${vehicle.inv_image}">`
+      details += `<img src="${vehicle.inv_image}" alt="${vehicle.inv_year} ${vehicle.inv_model} ${vehicle.inv_make}">`
       details += `<p id="detail-price">Sales price: $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>`
       details += `<ul id="details-list">`
       details += `<li><b>Mileage:</b> ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)}</li>`
