@@ -10,6 +10,7 @@ async function buildLogin(req, res, next) {
     res.render("account/login", {
         title: "Login",
         nav,
+        errors: null,
     })
 }
 
@@ -20,18 +21,6 @@ async function buildRegister(req, res, next) {
   let nav = await utilities.getNav()
   res.render("account/register", {
     title: "Register",
-    nav,
-    errors: null,
-  })
-}
-
-/* ****************************************
-*  Deliver management view
-* *************************************** */
-async function buildRegister(req, res, next) {
-  let nav = await utilities.getNav()
-  res.render("account/inv", {
-    title: "Vechile Management",
     nav,
     errors: null,
   })

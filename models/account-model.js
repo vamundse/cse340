@@ -22,7 +22,7 @@ async function checkExistingEmail(account_email) {
   }
 }
 
-async function loginAccount(account_email, account_password) {
+async function loginAccount(account_email) {
   try {
     const sql = "SELECT account_email, account_password FROM account WHERE account_email = $1"
   return await pool.query(sql, [account_email])

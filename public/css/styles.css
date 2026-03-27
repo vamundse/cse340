@@ -232,27 +232,27 @@ nav a:active {
   padding: 0 0 20px 30px;
 }
 
-#login-form, #register-form {
+#login-form, #register-form, #add-classification-form, #add-vehicle-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
   max-width: 300px;
 }
 
-#login-form label, #register-form label {
+#login-form label, #register-form label, #add-classification-form label, #add-vehicle-form label {
   display: flex;
   flex-direction: column;
   gap: 2px;
   padding-top: 10px;
 }
 
-#login-form input, #register-form input {
+#login-form input, #register-form input, #add-classification-form input, #add-vehicle-form input, #add-vehicle-form select {
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #ccc;
 }
 
-#login-form button, #register-form button {
+#login-form button, #register-form button, #add-classification-form button, #add-vehicle-form button {
   padding: 10px;
   border-radius: 10px;
   background: var(--main-color);
@@ -262,12 +262,21 @@ nav a:active {
   font-weight: 600;
 }
 
+#add-vehicle-form textarea {
+  height: 100px;
+  padding: 10px;
+}
+
 #login-form p {
   align-self: center;
 }
 
 #password-req {
   font-size: 0.8rem;
+}
+
+#invmanlinks {
+  padding: 10px 0;
 }
 
 @media screen and (min-width: 501px) {

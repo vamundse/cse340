@@ -80,12 +80,33 @@ Util.buildVehicleDetails = async function(data) {
   return details
 }
 
-
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
  * General Error Handling
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+
+
+/* ****************************************
+ * Makes a classification list for the Add Vehicle form
+ **************************************** */
+Util.addVehicleClassificationList = async function (req, res, next) {
+  let data = await invModel.getClassifications()
+  let list = `<select name="classification_id" id="classificationsList" required>`
+  list += "<option value=''>Choose a Classification</option>"
+  data.rows.forEach((row) => {
+    list += '<option value="' + row.classification_id + '"'
+    /*if (
+      classification_id != null &&
+      row.classification_id == classification_id
+    ) {
+      list += " selected "
+    }*/
+    list += ">" + row.classification_name + "</option>"
+  })
+    list += "</select>"
+    return list
+}
 
 module.exports = Util
