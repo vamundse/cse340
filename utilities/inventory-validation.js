@@ -124,7 +124,7 @@ const validate = {}
     ]
   }
 
-    /* ******************************
+  /* ******************************
    * Check data and return errors or add vehicle
    * ***************************** */
   validate.checkVehicleData = async (req, res, next) => {
@@ -154,4 +154,37 @@ const validate = {}
     }
     next()
   }
+
+    /* ******************************
+   * Check data and return errors or edit inventory
+   * ***************************** */
+  validate.checkUpdateData = async (req, res, next) => {
+    const { inv_id, classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color } = req.body
+    let errors = []
+    let classificationList = await utilities.addVehicleClassificationList()
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      let nav = await utilities.getNav()
+      res.render("inventory/edit", {
+        errors,
+        title: "Edit Vehicle",
+        nav,
+        classificationList,
+        inv_id,
+        classification_id,
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_miles,
+        inv_color,
+      })
+      return
+    }
+    next()
+  }
+
   module.exports = validate

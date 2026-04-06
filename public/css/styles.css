@@ -4,6 +4,7 @@
   --white-color: #fff;
   --white-color-faded: rgb(255, 255, 255, 0.9);
   --main-color-faded: rgb(220, 241, 255);
+  --light-gray: #eee;
 }
 
 /******* Change Box Model ***************/
@@ -234,27 +235,32 @@ nav a:active {
   padding: 0 0 20px 30px;
 }
 
-#login-form, #register-form, #add-classification-form, #add-vehicle-form {
+#login-form, #register-form, #add-classification-form, #add-vehicle-form, #edit-inventory-form, #delete-confirm {
   display: flex;
   flex-direction: column;
   gap: 10px;
   max-width: 300px;
 }
 
-#login-form label, #register-form label, #add-classification-form label, #add-vehicle-form label {
+#login-form label, #register-form label, #add-classification-form label, #add-vehicle-form label, #edit-inventory-form label, #delete-confirm label {
   display: flex;
   flex-direction: column;
   gap: 2px;
   padding-top: 10px;
 }
 
-#login-form input, #register-form input, #add-classification-form input, #add-vehicle-form input, #add-vehicle-form select {
+#login-form input, #register-form input, #add-classification-form input, #add-vehicle-form input, #add-vehicle-form select, #edit-inventory-form select, #edit-inventory-form input, #delete-confirm input {
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #ccc;
 }
 
-#login-form button, #register-form button, #add-classification-form button, #add-vehicle-form button {
+#delete-confirm input:read-only {
+  background-color: var(--light-gray);
+  cursor: not-allowed;
+}
+
+#login-form button, #register-form button, #add-classification-form button, #add-vehicle-form button, #edit-inventory-form button, #delete-confirm button {
   padding: 10px;
   border-radius: 10px;
   background: var(--main-color);
@@ -262,11 +268,24 @@ nav a:active {
   border: none;
   font-size: 1rem;
   font-weight: 600;
+  cursor: pointer;
 }
 
-#add-vehicle-form textarea {
+#login-form button:hover, #register-form button:hover, #add-classification-form button:hover, #add-vehicle-form button:hover, #edit-inventory-form button:hover, #delete-confirm button:hover {
+  background: var(--main-color-faded);
+  color: var(--text-color);
+}
+
+#login-form button:disabled, #register-form button:disabled, #add-classification-form button:disabled, #add-vehicle-form button:disabled, #edit-inventory-form button:disabled, #delete-confirm button:disabled {
+  background: var(--light-gray);
+  color: var(--text-color);
+  cursor: not-allowed;
+}
+
+#add-vehicle-form textarea, #edit-inventory-form textarea {
   height: 100px;
   padding: 10px;
+  border-radius: 10px;
 }
 
 #login-form p {
@@ -282,6 +301,23 @@ nav a:active {
   display: flex;
   flex-direction: column;
   max-width: 300px;
+  margin-bottom: 20px;
+}
+
+#inventory-management {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+#inventory-management select {
+  padding: 10px;
+}
+
+#inventoryDisplay td {
+  padding: 5px;
 }
 
 @media screen and (min-width: 501px) {
