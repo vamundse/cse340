@@ -19,17 +19,17 @@
 <% } %>
 
 <form action="/inv/add-vehicle" method="post" id="add-vehicle-form">
-    <label>Classification
+    <label for="classificationsList">Classification
         <%- classificationList %>
     </label>
     <label>Make:<input type="text" id="inv_make" name="inv_make" required pattern="[a-zA-Z ]{2,}" value="<%= locals.inv_make %>"></label>
     <label>Model:<input type="text" id="inv_model" name="inv_model" required pattern="[a-zA-Z ]{3,}" value="<%= locals.inv_model %>"></label>
-    <label>Year:<input type="number" id="inv_year" name="inv_year" required pattern="[0-9]{4}" value="<%= locals.inv_year %>"></label>
-    <label>Description:<textarea id="inv_description" name="inv_description" required minlength="20"><%= locals.inv_description %></textarea></label>
+    <label>Year:<input type="number" id="inv_year" name="inv_year" required value="<%= locals.inv_year %>"></label>
+    <label for="inv_description">Description:<textarea id="inv_description" name="inv_description" required minlength="20"><%= locals.inv_description %></textarea></label>
     <label>Image path:<input type="text" id="inv_image" name="inv_image" required value="<%= locals.inv_image || '/images/vehicles/no-image.png' %>"></label>
     <label>Thumbnail image path:<input type="text" id="inv_thumbnail" name="inv_thumbnail" required value="<%= locals.inv_thumbnail || '/images/vehicles/no-image-tn.png' %>"></label>
-    <label>Price:<input type="number" id="inv_price" name="inv_price" required minlength="1" value="<%= locals.inv_price %>"></label>
-    <label>Miles:<input type="number" id="inv_miles" name="inv_miles" required minlength="1" value="<%= locals.inv_miles %>"></label>
+    <label>Price:<input type="number" id="inv_price" name="inv_price" required value="<%= locals.inv_price %>"></label>
+    <label>Miles:<input type="number" id="inv_miles" name="inv_miles" required value="<%= locals.inv_miles %>"></label>
     <label>Color:<input type="text" id="inv_color" name="inv_color" required pattern="[a-zA-Z ]{3,}" value="<%= locals.inv_color %>"></label>
     <button>Add Vehicle</button>
 </form>
