@@ -126,10 +126,16 @@ Util.checkJWTToken = (req, res, next) => {
           return res.redirect("account/login")
         }
         res.locals.accountData = accountData
-        res.locals.loggedin = 1
+        res.locals.account_firstname = accountData.account_firstname
+        res.locals.account_lastname = accountData.account_lastname
+        res.locals.account_id = accountData.account_id
+        res.locals.account_type = accountData.account_type
+        res.locals.account_email = accountData.account_email
+        res.locals.loggedin = true
         next()
       }) 
     } else {
+      res.locals.loggedin = false
       next()
   }
 }
@@ -145,5 +151,16 @@ Util.checkLogin = (req, res, next) => {
     return res.redirect("/account/login")
   }
 }
+
+Util.checkIfAdmin = async (req, res, next) => {
+  let nav = await Util.getNav()
+  if (res.locals.accountData && (res.locals.accountData.account_type === "Employee" || res.locals.accountData.account_type === "Admin")) {
+    next()
+  } else {
+    req.flash("notice", "You do not have access to this page.")
+    res.redirect("/account/login")
+  }
+}
+
 
 module.exports = Util

@@ -7,6 +7,9 @@ const accountValidate = require('../utilities/account-validation')
 router.get("/login", utilities.handleErrors(accController.buildLogin))
 router.get("/register", utilities.handleErrors(accController.buildRegister))
 router.get("", utilities.checkLogin, utilities.handleErrors(accController.buildManagement))
+router.get("/update/:account_id", utilities.handleErrors(accController.buildUpdateAccount))
+router.get("/logout", utilities.handleErrors(accController.logoutProcess))
+
 router.post(
   "/register",
   accountValidate.registrationRules(),
@@ -19,6 +22,17 @@ router.post(
   accountValidate.loginRules(),
   accountValidate.checkLoginData,
   utilities.handleErrors(accController.accountLogin)
+)
+
+router.post("/update-data",
+  accountValidate.updateRules(),
+  accountValidate.checkUpdateData,
+  utilities.handleErrors(accController.updateAccount)
+)
+
+router.post("/update-password",
+  accountValidate.updatePasswordRules(),
+  utilities.handleErrors(accController.changePassword)
 )
 
 module.exports = router;
