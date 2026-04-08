@@ -44,6 +44,7 @@ h2 {
 #tools {
   display: flex;
   gap: 10px;
+  margin-left: auto;
 }
 
 .siteName a,
@@ -71,7 +72,6 @@ h2 {
 
 #top-header {
   display: flex;
-  justify-content: space-between;
 }
 
 nav ul {

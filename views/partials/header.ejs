@@ -6,7 +6,8 @@
     <% if (!loggedin) { %>
     <a title="Click to log in" href="/account/login">My Account</a>
     <% } else if (loggedin) { %>
-    <a href="/account/">Welcome <%- account_firstname %></a><a href="/account/logout">Log out</a>
+    <a href="/account/">Welcome <%- account_firstname %></a>
+    <a href="/account/logout">Log out</a>
     <% } %>
   </div>
 </header>
