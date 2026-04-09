@@ -37,8 +37,8 @@ router.post("/update-password",
 )
 
 router.post("/add-account",
-  accountValidate.registrationRules(),
-  accountValidate.checkRegData,
+  accountValidate.addAccountRules(),
+  accountValidate.checkAddAccountData,
   utilities.handleErrors(accController.addAccount)
 )
 

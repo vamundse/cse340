@@ -182,7 +182,7 @@ Util.checkIfAdmin = async (req, res, next) => {
  **************************************** */
 Util.addAccountTypeList = async function (account_type) {
   let data = await accountModel.getAccountTypes()
-  let list = `<select name="account_type" id="accountTypeList" required>`
+  let list = `<select name="account_type" id="accountTypeList" value="<%= account_type %>" required>`
   list += "<option value=''>Choose an Account Type</option>"
   data.rows.forEach((row) => {
     list += '<option value="' + row.account_type + '"'

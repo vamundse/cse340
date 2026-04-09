@@ -290,7 +290,10 @@ async function buildAddAccount(req, res, next) {
     title: "Add Account",
     nav,
     errors: null,
-    accountTypeSelect
+    accountTypeSelect,
+    account_firstname: "",
+    account_lastname: "",
+    account_email: ""
   })
 }
 
@@ -299,6 +302,7 @@ async function buildAddAccount(req, res, next) {
 * *************************************** */
 async function addAccount(req, res) {
   let nav = await utilities.getNav()
+  const accountTypeSelect = await utilities.addAccountTypeList()
   const { account_firstname, account_lastname, account_email, account_password, account_type } = req.body
 
   // Hash the password before storing
@@ -312,6 +316,7 @@ async function addAccount(req, res) {
       title: "Add Account",
       nav,
       error: null,
+      accountTypeSelect,
       account_firstname,
       account_lastname,
       account_email,
@@ -333,17 +338,18 @@ async function addAccount(req, res) {
       "notice",
       `Congratulations, you\'ve added the account for ${account_firstname} ${account_lastname}.`
     )
-    res.status(201).render("account/login", {
-      title: "Login",
+    res.status(201).render("account/management", {
+      title: "Account Management",
       nav,
       errors: null,
     })
   } else {
-    req.flash("notice", "Sorry, the registration failed.")
+    req.flash("notice", "Sorry, there was an error adding the account.")
     res.status(501).render("account/add-account", {
-      title: "Registration",
+      title: "Add Account",
       nav,
       errors: null,
+      accountTypeSelect,
       account_firstname,
       account_lastname,
       account_email,

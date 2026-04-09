@@ -57,5 +57,5 @@ addAccount function to process adding an account in accController
 checkIfAdmin function to make sure only admins can add users in utilities index.js
 post route for add-account form in accountRoute
 added a section for account management in the account management view
-addad a link to adding a user in account management only visible to admins in the account management view
-I'm using the registration validation to validate the information in the form
+added a link to adding a user in account management only visible to admins in the account management view
+Made a add account validation function and a add account checkData function
