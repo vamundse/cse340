@@ -280,4 +280,76 @@ async function logoutProcess(req, res, next) {
   res.redirect("/")
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildManagement, buildUpdateAccount, updateAccount, changePassword, logoutProcess }
+/* ****************************************
+*  Deliver Add Account view
+* *************************************** */
+async function buildAddAccount(req, res, next) {
+  let nav = await utilities.getNav()
+  const accountTypeSelect = await utilities.addAccountTypeList()
+  res.render("./account/add-account", {
+    title: "Add Account",
+    nav,
+    errors: null,
+    accountTypeSelect
+  })
+}
+
+/* ****************************************
+*  Process Adding an Account
+* *************************************** */
+async function addAccount(req, res) {
+  let nav = await utilities.getNav()
+  const { account_firstname, account_lastname, account_email, account_password, account_type } = req.body
+
+  // Hash the password before storing
+  let hashedPassword
+  try {
+    // regular password and cost (salt is generated automatically)
+    hashedPassword = bcrypt.hashSync(account_password, 10)
+  } catch (error) {
+    req.flash("notice", 'Sorry, there was an error adding the account.')
+    res.status(500).render("account/add-account", {
+      title: "Add Account",
+      nav,
+      error: null,
+      account_firstname,
+      account_lastname,
+      account_email,
+      account_type
+    })
+    return
+  }
+
+  const regResult = await accountModel.addAccount(
+    account_firstname,
+    account_lastname,
+    account_email,
+    hashedPassword,
+    account_type
+  )
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `Congratulations, you\'ve added the account for ${account_firstname} ${account_lastname}.`
+    )
+    res.status(201).render("account/login", {
+      title: "Login",
+      nav,
+      errors: null,
+    })
+  } else {
+    req.flash("notice", "Sorry, the registration failed.")
+    res.status(501).render("account/add-account", {
+      title: "Registration",
+      nav,
+      errors: null,
+      account_firstname,
+      account_lastname,
+      account_email,
+      account_type
+    })
+  }
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildManagement, buildUpdateAccount, updateAccount, changePassword, logoutProcess, buildAddAccount, addAccount }

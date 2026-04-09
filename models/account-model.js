@@ -85,4 +85,23 @@ async function getAccountById (account_id) {
   }
 }
 
-module.exports = { registerAccount, checkExistingEmail, loginAccount, getAccountByEmail, updateAccount, changePassword, getAccountById}
+/* ***************************
+ *  Get all account type data
+ * ************************** */
+async function getAccountTypes(){
+    return await pool.query("SELECT DISTINCT account_type FROM public.account ORDER BY account_type")
+}
+
+/* *****************************
+*   Add an account
+* *************************** */
+async function addAccount(account_firstname, account_lastname, account_email, account_password, account_type) {
+  try {
+    const sql = "INSERT INTO account (account_firstname, account_lastname, account_email, account_password, account_type) VALUES ($1, $2, $3, $4, $5) RETURNING *"
+    return await pool.query(sql, [account_firstname, account_lastname, account_email, account_password, account_type])
+  } catch (error) {
+    return error.message
+  }
+}
+
+module.exports = { registerAccount, checkExistingEmail, loginAccount, getAccountByEmail, updateAccount, changePassword, getAccountById, getAccountTypes, addAccount }

@@ -8,14 +8,14 @@ const utilities = require("../utilities/index")
 // Route to build inventory by classification view
 router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId))
 router.get("/detail/:invId", utilities.handleErrors(invController.buildByInvId))
-router.get("/", utilities.checkIfAdmin, utilities.handleErrors(invController.buildInvManagement))
-router.get("/add-classification", utilities.checkIfAdmin, utilities.handleErrors(invController.buildAddClassification))
-router.get("/add-vehicle", utilities.checkIfAdmin, utilities.handleErrors(invController.buildAddVehicle))
-router.get("/getInventory/:classification_id", utilities.checkIfAdmin, utilities.handleErrors(invController.getInventoryJSON))
+router.get("/", utilities.checkIfAdminOrEmployee, utilities.handleErrors(invController.buildInvManagement))
+router.get("/add-classification", utilities.checkIfAdminOrEmployee, utilities.handleErrors(invController.buildAddClassification))
+router.get("/add-vehicle", utilities.checkIfAdminOrEmployee, utilities.handleErrors(invController.buildAddVehicle))
+router.get("/getInventory/:classification_id", utilities.checkIfAdminOrEmployee, utilities.handleErrors(invController.getInventoryJSON))
 // Route to build the inventory edit view
-router.get("/edit/:inv_id", utilities.checkIfAdmin, utilities.handleErrors(invController.buildEditInventory))
+router.get("/edit/:inv_id", utilities.checkIfAdminOrEmployee, utilities.handleErrors(invController.buildEditInventory))
 // Route to build the inventory deletion view
-router.get("/delete/:inv_id", utilities.checkIfAdmin, utilities.handleErrors(invController.buildDeleteInventory))
+router.get("/delete/:inv_id", utilities.checkIfAdminOrEmployee, utilities.handleErrors(invController.buildDeleteInventory))
 
 router.post(
     "/add-classification/",

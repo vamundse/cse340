@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model")
+const accountModel = require("../models/account-model")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 const Util = {}
@@ -152,8 +153,10 @@ Util.checkLogin = (req, res, next) => {
   }
 }
 
-Util.checkIfAdmin = async (req, res, next) => {
-  let nav = await Util.getNav()
+/* ****************************************
+ *  Check if Administrator or Employee
+ * ************************************ */
+Util.checkIfAdminOrEmployee = async (req, res, next) => {
   if (res.locals.accountData && (res.locals.accountData.account_type === "Employee" || res.locals.accountData.account_type === "Admin")) {
     next()
   } else {
@@ -162,5 +165,37 @@ Util.checkIfAdmin = async (req, res, next) => {
   }
 }
 
+/* ****************************************
+ *  Check if Administrator
+ * ************************************ */
+Util.checkIfAdmin = async (req, res, next) => {
+  if (res.locals.accountData && res.locals.accountData.account_type === "Admin") {
+    next()
+  } else {
+    req.flash("notice", "You do not have access to this page.")
+    res.redirect("/account/login")
+  }
+}
+
+/* ****************************************
+ * Makes a account type list for the Add account form
+ **************************************** */
+Util.addAccountTypeList = async function (account_type) {
+  let data = await accountModel.getAccountTypes()
+  let list = `<select name="account_type" id="accountTypeList" required>`
+  list += "<option value=''>Choose an Account Type</option>"
+  data.rows.forEach((row) => {
+    list += '<option value="' + row.account_type + '"'
+    if (
+      account_type != null &&
+      row.account_type == account_type
+    ) {
+      list += " selected "
+    }
+    list += ">" + row.account_type + "</option>"
+  })
+    list += "</select>"
+    return list
+}
 
 module.exports = Util

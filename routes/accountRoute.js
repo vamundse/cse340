@@ -9,6 +9,7 @@ router.get("/register", utilities.handleErrors(accController.buildRegister))
 router.get("", utilities.checkLogin, utilities.handleErrors(accController.buildManagement))
 router.get("/update/:account_id", utilities.handleErrors(accController.buildUpdateAccount))
 router.get("/logout", utilities.handleErrors(accController.logoutProcess))
+router.get("/add-account", utilities.checkIfAdmin, utilities.handleErrors(accController.buildAddAccount))
 
 router.post(
   "/register",
@@ -33,6 +34,12 @@ router.post("/update-data",
 router.post("/update-password",
   accountValidate.updatePasswordRules(),
   utilities.handleErrors(accController.changePassword)
+)
+
+router.post("/add-account",
+  accountValidate.registrationRules(),
+  accountValidate.checkRegData,
+  utilities.handleErrors(accController.addAccount)
 )
 
 module.exports = router;
