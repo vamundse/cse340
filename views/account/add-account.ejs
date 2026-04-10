@@ -19,7 +19,7 @@
 <% } %>
 
 <form action="/account/add-account" method="post" id="add-account-form">
-    <label>Account Type
+    <label for="accountTypeList">Account Type
         <%- accountTypeSelect %>
     </label>
     <label>First name<input type="text" id="account_firstname" name="account_firstname" required value="<%= account_firstname %>"></label>
@@ -27,7 +27,7 @@
     <label>Email address<input type="email" id="account_email" name="account_email" required value="<%= account_email %>"></label>
     <label>Password
         <input type="password" id="account_password" name="account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
-        <div id="password-req">Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character.</div>
+        Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character.
     </label>
     <button>Add Account</button>
 </form>

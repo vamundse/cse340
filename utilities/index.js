@@ -55,7 +55,7 @@ Util.buildClassificationGrid = async function(data) {
     })
     grid += '</ul>'
   } else { 
-    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+    grid = '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
   return grid
 }
@@ -78,7 +78,7 @@ Util.buildVehicleDetails = async function(data) {
     })
     details += `</div>`
   } else {
-    details += '<p class="notice">Sorry, the vehicle could not be found.</p>'
+    details = '<p class="notice">Sorry, the vehicle could not be found.</p>'
   }
   return details
 }
@@ -182,7 +182,7 @@ Util.checkIfAdmin = async (req, res, next) => {
  **************************************** */
 Util.addAccountTypeList = async function (account_type) {
   let data = await accountModel.getAccountTypes()
-  let list = `<select name="account_type" id="accountTypeList" value="<%= account_type %>" required>`
+  let list = `<select name="account_type" id="accountTypeList" required>`
   list += "<option value=''>Choose an Account Type</option>"
   data.rows.forEach((row) => {
     list += '<option value="' + row.account_type + '"'
